@@ -26,7 +26,8 @@ if (flutterVersionName == null) {
 
 
 android {
-    compileSdkVersion 31
+    compileSdk flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -64,5 +65,5 @@ flutter {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10"
+   // implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10"
 }
