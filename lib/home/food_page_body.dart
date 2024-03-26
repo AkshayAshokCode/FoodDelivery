@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({super.key});
@@ -9,7 +10,7 @@ class FoodPageBody extends StatefulWidget {
 
 class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-
+  PageController pageController = PageController(viewportFraction: 0.85);
   @override
   void initState() {
     super.initState();
@@ -27,6 +28,7 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
     return Container(
       height: 320,
       child: PageView.builder(
+        controller: pageController,
           itemCount: 5 ,
           itemBuilder: (context, position){
         return _buildPageItem(position);
@@ -46,11 +48,25 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
             image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage(
-                    "assets/image/food1.png"
+                    "assets/image/food11.png"
                 )
             )
         )
-    )
+    ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+              height: 140,
+              margin: EdgeInsets.only(left: 30, right: 30, bottom: 15),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.white,
+              ),
+            child: Container(
+              // add combination of row & column
+            ),
+          ),
+        )
       ]
     );
   }
