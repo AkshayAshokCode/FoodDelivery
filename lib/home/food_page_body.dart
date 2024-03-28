@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/utils/colors.dart';
+import 'package:food_delivery/widgets/icon_and_text_widget.dart';
 
 import '../widgets/big_text.dart';
 import '../widgets/small_text.dart';
@@ -91,7 +92,9 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
                   SizedBox(height: 10,),
                   Row(
                     children: [
-
+                      IconAndTextWidget(icon: Icons.circle_sharp, text: "Normal", iconColor: AppColors.iconColor1),
+                      IconAndTextWidget(icon: Icons.location_on, text: "1.7km", iconColor: AppColors.mainColor),
+                      IconAndTextWidget(icon: Icons.access_time_rounded, text: "32min", iconColor: AppColors.iconColor2)
                     ]
                   )
                 ],
