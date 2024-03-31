@@ -14,17 +14,30 @@ class FoodPageBody extends StatefulWidget {
 }
 
 class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+  //late AnimationController _controller;
   PageController pageController = PageController(viewportFraction: 0.85);
+  var _currPageValue = 0.0;
+  double _scaleFactor = 0.8;
   @override
-  void initState() {
+  void initState(){
     super.initState();
-    _controller = AnimationController(vsync: this);
+    pageController.addListener(() {
+      setState(() {
+        _currPageValue = pageController.page!;
+      });
+    });
+
   }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _controller = AnimationController(vsync: this);
+  // }
 
   @override
   void dispose() {
-    _controller.dispose();
+    pageController.dispose();
     super.dispose();
   }
 
@@ -42,6 +55,22 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
   }
 
   Widget _buildPageItem(int index){
+    Matrix4 matrix = new Matrix4.identity();
+    if(index == _currPageValue.floor()){
+      var currScale = 1-(_currPageValue-index)*(1-0.2);
+      var currTrans = _height*(1-currScale)/2;
+      matrix4 = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
+    }else if(index == _currPageValue.floor()+1){
+      var currScale = 0.8-(_currPageValue-index+1)*(0.8-0.2);
+      var currTrans = _height*(1-currScale)/2;
+      matrix4 = Matrix4.diagonal3Values(1, currScale, 1);
+      matrix4 = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
+    }else if(index == _currPageValue.floor()-1){
+      var currScale = 0.8-(_currPageValue-index)*(0.8-0.2);
+      var currTrans = _height*(1-currScale)/2;
+      matrix4 = Matrix4.diagonal3Values(1, currScale, 1);
+      matrix4 = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
+
     return Stack(
       children: [
         Container(
