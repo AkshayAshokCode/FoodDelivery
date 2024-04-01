@@ -18,6 +18,7 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currPageValue = 0.0;
   double _scaleFactor = 0.8;
+  double _height = 220;
   @override
   void initState(){
     super.initState();
@@ -38,7 +39,7 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
   @override
   void dispose() {
     pageController.dispose();
-    super.dispose();
+  //  super.dispose();
   }
 
   @override
@@ -55,23 +56,31 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
   }
 
   Widget _buildPageItem(int index){
-    Matrix4 matrix = new Matrix4.identity();
+    Matrix4 matrix4 = new Matrix4.identity();
     if(index == _currPageValue.floor()){
-      var currScale = 1-(_currPageValue-index)*(1-0.2);
+      var currScale = 1-(_currPageValue-index)*(1 - _scaleFactor);
       var currTrans = _height*(1-currScale)/2;
       matrix4 = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
-    }else if(index == _currPageValue.floor()+1){
-      var currScale = 0.8-(_currPageValue-index+1)*(0.8-0.2);
-      var currTrans = _height*(1-currScale)/2;
-      matrix4 = Matrix4.diagonal3Values(1, currScale, 1);
-      matrix4 = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
-    }else if(index == _currPageValue.floor()-1){
-      var currScale = 0.8-(_currPageValue-index)*(0.8-0.2);
+    }
+    else if(index == _currPageValue.floor()+1){
+      var currScale = _scaleFactor+(_currPageValue-index+1)*(1 - _scaleFactor);
       var currTrans = _height*(1-currScale)/2;
       matrix4 = Matrix4.diagonal3Values(1, currScale, 1);
       matrix4 = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
-
-    return Stack(
+    }
+    else if(index == _currPageValue.floor()-1) {
+      var currScale = _scaleFactor - (_currPageValue - index) * (1 - _scaleFactor);
+      var currTrans = _height * (1 - currScale) / 2;
+      matrix4 = Matrix4.diagonal3Values(1, currScale, 1);
+      matrix4 = Matrix4.diagonal3Values(1, currScale, 1)
+        ..setTranslationRaw(0, currTrans, 0);
+    }else{
+      var currScale = 0.8;
+      matrix4 = Matrix4.diagonal3Values(1, currScale, 1)
+        ..setTranslationRaw(0, _height*(1-_scaleFactor)/2, 1);
+    }
+    return Transform(transform: matrix4,
+        child:Stack(
       children: [
         Container(
         height: 220,
@@ -132,6 +141,7 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
           ),
         )
       ]
+    )
     );
   }
 }
