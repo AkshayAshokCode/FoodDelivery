@@ -48,6 +48,7 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //slider section
         Container(
           height: Dimensions.pageView,
           child: PageView.builder(
@@ -57,6 +58,7 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
                 return _buildPageItem(position);
               }),
         ),
+    //dots
     new DotsIndicator(
     dotsCount: 5,
     position: _currPageValue,
@@ -66,7 +68,29 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
     activeSize: const Size(18.0, 9.0),
     activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
     ),
-    )
+    ),
+        //Popular text
+        SizedBox(height: Dimensions.height30,),
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: "Popular"),
+              SizedBox(width: Dimensions.width10,),
+              Container(
+                margin: const EdgeInsets.only(bottom: 3),
+                child: BigText(text: ".",color: Colors.black26,),
+              ),
+              SizedBox(width: Dimensions.width10,),
+              Container(
+                margin: const EdgeInsets.only(bottom: 2),
+                child: SmallText(text: "Food pairing",),
+              )
+
+            ],
+          ),
+        )
       ]
     );
   }
