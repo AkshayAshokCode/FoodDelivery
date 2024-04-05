@@ -90,7 +90,20 @@ class _FoodPageBodyState extends State<FoodPageBody> with SingleTickerProviderSt
 
             ],
           ),
-        )
+        ),
+        // list of food & images
+        ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context,index){
+              return Container(
+                margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
+                child: Row(
+                  children: [
+
+                  ],
+                ),
+              );
+            })
       ]
     );
   }
