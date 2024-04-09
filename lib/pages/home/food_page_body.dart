@@ -5,8 +5,9 @@ import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/icon_and_text_widget.dart';
 
-import '../widgets/big_text.dart';
-import '../widgets/small_text.dart';
+import '../../widgets/big_text.dart';
+import '../../widgets/small_text.dart';
+
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({super.key});
