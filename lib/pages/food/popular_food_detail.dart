@@ -15,6 +15,7 @@ class PopularFoodDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
       children: [
         Positioned(
@@ -68,7 +69,21 @@ class PopularFoodDetail extends StatelessWidget {
               )
         ))
       ],
-    )
+    ),
+      bottomNavigationBar: Container(
+        height: 120,
+        padding: EdgeInsets.only(top: Dimensions.height30, bottom: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
+        decoration: BoxDecoration(
+          color: AppColors.buttonBackgroundColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(Dimensions.radius20*2),
+            topRight: Radius.circular(Dimensions.radius20*2),
+          )
+        ),
+        child: Row(
+
+        ),
+      ),
     );
   }
 }
